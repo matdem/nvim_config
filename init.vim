@@ -93,10 +93,13 @@ noremap <silent> <leader><cr> :noh<cr>
 "inoremap jk <esc>
 "cnoremap jk <esc>
 
+" === emmet.vim ==="
+"let g:user_emmet_leader_key='<leader>'
+
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
-  let col = col('.') - 1
+ let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
