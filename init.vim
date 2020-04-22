@@ -10,9 +10,14 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Install extensions for coc.nvim
+  let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-pairs']
 
 " HTML/CSS writter abbreviation
 Plug 'mattn/emmet-vim'
+
+" Javascript improve syntax and indentation
+Plug 'pangloss/vim-javascript'
 
 " === UI === "
 " File explorer
@@ -50,7 +55,17 @@ autocmd vimenter * NERDTree
 set termguicolors
 
 " =========================== "
-"       KEYS BEHAVIORS     == "
+" ==   SEARCH IMPROVEMENT  == "
+" =========================== "
+
+" Case insensitive during a search
+set ignorecase
+
+" Become case sensitive if a Caps is detected
+set smartcase
+
+" =========================== "
+" ==     KEYS BEHAVIORS    == "
 " =========================== "
 
 " Insert spaces when <TAB> is pressed
@@ -107,3 +122,20 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
