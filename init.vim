@@ -13,6 +13,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " Install extensions for coc.nvim
   let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-pairs']
 
+" Snippets
+Plug 'honza/vim-snippets'
+
+" Changes numbers for relative numbers
+Plug 'myusuf3/numbers.vim'
+
 " HTML/CSS writter abbreviation
 Plug 'mattn/emmet-vim'
 
@@ -22,6 +28,9 @@ Plug 'pangloss/vim-javascript'
 " === UI === "
 " File explorer
 Plug 'scrooloose/nerdtree'
+
+" Gives the git sign in the signcolumn
+Plug 'airblade/vim-gitgutter'
 
 " Colorscheme
 Plug 'morhetz/gruvbox'
