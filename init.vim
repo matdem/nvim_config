@@ -16,8 +16,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Snippets
 Plug 'honza/vim-snippets'
 
+" Comment in many languages with <leader>c[char]
+Plug 'preservim/nerdcommenter'
 " Changes numbers for relative numbers
-Plug 'myusuf3/numbers.vim'
+"Plug 'myusuf3/numbers.vim'
 
 " HTML/CSS writter abbreviation
 Plug 'mattn/emmet-vim'
