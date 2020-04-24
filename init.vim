@@ -18,8 +18,6 @@ Plug 'honza/vim-snippets'
 
 " Comment in many languages with <leader>c[char]
 Plug 'preservim/nerdcommenter'
-" Changes numbers for relative numbers
-"Plug 'myusuf3/numbers.vim'
 
 " HTML/CSS writter abbreviation
 Plug 'mattn/emmet-vim'
@@ -30,6 +28,9 @@ Plug 'pangloss/vim-javascript'
 " === UI === "
 " File explorer
 Plug 'scrooloose/nerdtree'
+
+" Changes numbers for relative numbers
+"Plug 'myusuf3/numbers.vim'
 
 " Gives the git sign in the signcolumn
 Plug 'airblade/vim-gitgutter'
@@ -59,11 +60,23 @@ colorscheme sublimemonokai
 " Enable line numbers
 set number
 
+" Enable true color support
+set termguicolors
+
+" === NERDTree === "
 " Toggle NERDTree when you open a file
 autocmd vimenter * NERDTree
 
-" Enable true color support
-set termguicolors
+" Fix the size of NERDTree
+let g:NERDTreeWinSize=22
+
+" === coc.vim === "
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " =========================== "
 " ==   SEARCH IMPROVEMENT  == "
@@ -82,7 +95,7 @@ set smartcase
 " Insert spaces when <TAB> is pressed
 set expandtab
 
-" ?
+" Tab completion command-line works even if the command begins with a Caps.
 set smarttab
 
 " Indentation amount for < and > commands
@@ -107,7 +120,7 @@ set softtabstop=2
 let g:mapleader='«'  
 
 " Toggle NERDTree
-noremap <F2> :NERDTreeToggle<CR>  
+noremap <C-n> :NERDTreeToggle<CR>  
 
 " Disable highlight when <leader><cr> is pressed
 noremap <silent> <leader><cr> :noh<cr>
@@ -121,6 +134,10 @@ noremap <silent> <leader><cr> :noh<cr>
 
 " === emmet.vim ==="
 "let g:user_emmet_leader_key='<leader>'
+
+" === coc-prettier === "
+vnoremap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f  <Plug>(coc-format-selected)
 
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
@@ -141,12 +158,5 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 " diagnostics appear/become resolved.
 "set signcolumn=yes
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
+" Symbol renaming -> Rename all related variable in all open buffer.
 nmap <leader>rn <Plug>(coc-rename)
