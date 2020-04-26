@@ -78,6 +78,9 @@ set updatetime=300
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" === Folding === "
+autocmd FileType html :setlocal foldmethod=indent foldlevel=2
+
 " =========================== "
 " ==   SEARCH IMPROVEMENT  == "
 " =========================== "
@@ -101,16 +104,16 @@ set smarttab
 " Indentation amount for < and > commands
 set shiftwidth=2
 
-" ?
+" Number of spaces that a <Tab> in the file counts for.
 set tabstop=2
 
 " Change number of spaces that a <TAB> counts dor during editing ops
 set softtabstop=2
 
 " Don't remember what do those settings
-"set lbr
-"set tw=500
-"set si
+"set linebreak
+"set textwidth=70
+"set smartindent
 
 " =========================== "
 "          MAPPINGS        == "
@@ -119,6 +122,11 @@ set softtabstop=2
 " Mapping <leader> to «
 let g:mapleader='«'  
 
+" Mapping to open my init.vim
+nnoremap <leader>ev :split $MYVIMRC<CR>
+
+" Mapping to source my init.vim
+nnoremap <leader>sv :source $MYVIMRC<CR>
 " Toggle NERDTree
 noremap <C-n> :NERDTreeToggle<CR>  
 
