@@ -54,15 +54,20 @@ call plug#end()
 " ==       INTERFACE        == "
 " ============================ "
 
+" Enable true color support
+set termguicolors
+
 " Set colorscheme to sublimemonokai
 colorscheme sublimemonokai
 
 " Enable line numbers
 set number
 
-" Enable true color support
-set termguicolors
+" Add new split window below
+set splitbelow
 
+" Add new vsplit window to the right
+set splitright
 " === NERDTree === "
 " Toggle NERDTree when you open a file
 autocmd vimenter * NERDTree
