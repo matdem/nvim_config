@@ -81,6 +81,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " === Folding === "
 autocmd FileType html :setlocal foldmethod=indent foldlevel=2
 
+" === NERDCommenter === "
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
 " =========================== "
 " ==   SEARCH IMPROVEMENT  == "
 " =========================== "
