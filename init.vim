@@ -142,6 +142,10 @@ noremap <C-n> :NERDTreeToggle<CR>
 " Disable highlight when <leader><cr> is pressed
 noremap <silent> <leader><cr> :noh<cr>
 
+" Use <C-s> to write a buffer
+nnoremap <C-s> :w<cr>
+inoremap <C-s> <esc>:w<cr>
+
 " Map jk as <ESC> in insert mode and command line
 " Not useful on my personnal computer because
 " I remap CapsLock to <ESC> and the 2 Shift to CapsLock
