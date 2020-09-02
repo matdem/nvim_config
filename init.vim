@@ -1,6 +1,6 @@
 " init.vim
 " Author: Mathieu Demers
-" Last update: April, 2020
+" Last update: June, 2020
 
 " ============================ "
 " ==        PLUGINS         == "
@@ -22,8 +22,20 @@ Plug 'preservim/nerdcommenter'
 " HTML/CSS writter abbreviation
 Plug 'mattn/emmet-vim'
 
+" Surround or unsurround a word, line or a block by a given expression
+Plug 'tpope/vim-surround'
+
 " Javascript improve syntax and indentation
 Plug 'pangloss/vim-javascript'
+
+" Plugins to improve Markdown experience.
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
+" Use fzf in vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " === UI === "
 " File explorer
@@ -68,14 +80,23 @@ set splitbelow
 
 " Add new vsplit window to the right
 set splitright
+
 " === NERDTree === "
+
 " Toggle NERDTree when you open a file
 autocmd vimenter * NERDTree
 
 " Fix the size of NERDTree
 let g:NERDTreeWinSize=22
 
+" Fix the signcolumn highlight background
+" both options seem to work :
+highlight clear SignColumn
+" or
+" highlight! link SignColumn LineNr
+
 " === coc.vim === "
+
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -84,9 +105,15 @@ set updatetime=300
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " === Folding === "
-autocmd FileType html :setlocal foldmethod=indent foldlevel=2
+
+augroup folding
+  autocmd!
+  autocmd FileType html :setlocal foldmethod=indent foldlevel=2
+  autocmd FileType javascript :setlocal foldmethod=syntax
+augroup END
 
 " === NERDCommenter === "
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -119,9 +146,18 @@ set tabstop=2
 " Change number of spaces that a <TAB> counts dor during editing ops
 set softtabstop=2
 
-" Don't remember what do those settings
-"set linebreak
-"set textwidth=70
+" ========================== "
+" ==       MARKDOWN       == "
+" ========================== "
+
+augroup markdown
+  autocmd!
+  autocmd FileType markdown :setlocal textwidth=75 linebreak relativenumber conceallevel=2
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END 
+
+" set linebreak
+" set textwidth=70
 "set smartindent
 
 " =========================== "
@@ -146,6 +182,33 @@ noremap <silent> <leader><cr> :noh<cr>
 nnoremap <C-s> :w<cr>
 inoremap <C-s> <esc>:w<cr>
 
+" === For BÉPO layout === "
+ " {W} -> [É]
+" ——————————
+" On remappe W sur É :
+noremap é w
+noremap É W
+
+" Corollaire: on remplace les text objects aw, aW, iw et iW
+" pour effacer/remplacer un mot quand on n’est pas au début (daé / laé).
+noremap aé aw
+noremap aÉ aW
+noremap ié iw
+noremap iÉ iW
+
+" Pour faciliter les manipulations de fenêtres, on utilise {W} comme un Ctrl+W :
+noremap w <C-w>
+noremap W <C-w><C-w> 
+
+" === Create a new zettel === "
+nnoremap <leader>nz :NewZettel
+
+" Mappings for fzf and ripgrep
+nnoremap \ :Rg<CR>
+nnoremap <C-T> :Files<cr>
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>s :BLines<cr>
+
 " Map jk as <ESC> in insert mode and command line
 " Not useful on my personnal computer because
 " I remap CapsLock to <ESC> and the 2 Shift to CapsLock
@@ -154,7 +217,7 @@ inoremap <C-s> <esc>:w<cr>
 "cnoremap jk <esc>
 
 " === emmet.vim ==="
-"let g:user_emmet_leader_key='<leader>'
+let g:user_emmet_leader_key='<C-E>'
 
 " === coc-prettier === "
 vnoremap <leader>f  <Plug>(coc-format-selected)
@@ -181,3 +244,16 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 " Symbol renaming -> Rename all related variable in all open buffer.
 nmap <leader>rn <Plug>(coc-rename)
+
+" =========================== "
+"     PLUGINS SETTINGS     == "
+" =========================== "
+
+" === Vimwiki === "
+let g:vimwiki_list = [{'path': '~/vimwiki',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" Command to create a new Markdown file with a timestamp at 
+" the beggining of the name.
+let g:zettelkasten = "/home/matdem/Documents/Zettelkasten/"
+command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . "-<args>.md"
