@@ -26,7 +26,8 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 
 " Javascript improve syntax and indentation
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Plugins to improve Markdown experience.
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -50,6 +51,8 @@ Plug 'airblade/vim-gitgutter'
 " Colorscheme
 Plug 'morhetz/gruvbox'
 Plug 'erichdongubler/vim-sublime-monokai'
+Plug 'tomasr/molokai'
+Plug 'nanotech/jellybeans.vim'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
@@ -70,7 +73,7 @@ call plug#end()
 set termguicolors
 
 " Set colorscheme to sublimemonokai
-colorscheme sublimemonokai
+colorscheme gruvbox
 
 " Enable line numbers
 set number
@@ -84,7 +87,7 @@ set splitright
 " === NERDTree === "
 
 " Toggle NERDTree when you open a file
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 " Fix the size of NERDTree
 let g:NERDTreeWinSize=22
