@@ -26,7 +26,7 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 
 " Javascript improve syntax and indentation
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 
 " Plugins to improve Markdown experience.
@@ -73,7 +73,7 @@ call plug#end()
 set termguicolors
 
 " Set colorscheme to sublimemonokai
-colorscheme gruvbox
+colorscheme molokai
 
 " Enable line numbers
 set number
@@ -83,6 +83,9 @@ set splitbelow
 
 " Add new vsplit window to the right
 set splitright
+
+" === vim-jsx-pretty === "
+let g:vim_jsx_pretty_colorful_config=1
 
 " === NERDTree === "
 
