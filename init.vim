@@ -182,7 +182,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 noremap <C-n> :NERDTreeToggle<CR>  
 
 " Disable highlight when <leader><cr> is pressed
-noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <cr> :noh<cr>
 
 " Use <C-s> to write a buffer
 nnoremap <C-s> :w<cr>
@@ -206,8 +206,11 @@ noremap iÉ iW
 noremap w <C-w>
 noremap W <C-w><C-w> 
 
-" === Create a new zettel === "
+" === Zettelkasten === "
+" Create a new zettel
 nnoremap <leader>nz :NewZettel
+" Change working directory for Vim and NERDTree
+nnoremap <leader>cz :cd $HOME/Documents/Zettelkasten<cr> :NERDTreeCWD<cr>
 
 " Mappings for fzf and ripgrep
 nnoremap \ :Rg<CR>
