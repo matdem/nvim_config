@@ -227,11 +227,7 @@ nnoremap <Leader>s :BLines<cr>
 "cnoremap jk <esc>
 
 " === emmet.vim ==="
-let g:user_emmet_leader_key='<C-E>'
-
-" === coc-prettier === "
-vnoremap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>f  <Plug>(coc-format-selected)
+let g:user_emmet_leader_key='<C-,>'
 
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
@@ -254,6 +250,9 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 " Symbol renaming -> Rename all related variable in all open buffer.
 nmap <leader>rn <Plug>(coc-rename)
+
+" === UltiSnips === "
+let g:UltiSnipsExpandTrigger="<c-n>"
 
 " =========================== "
 "     PLUGINS SETTINGS     == "
