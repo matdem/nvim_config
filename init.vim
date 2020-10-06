@@ -15,6 +15,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Snippets
 Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
 
 " Comment in many languages with <leader>c[char]
 Plug 'preservim/nerdcommenter'
